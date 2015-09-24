@@ -1,0 +1,219 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0 user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" type="text/css" href="css/base.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script src="js/jquery.1.7.2.min.js"></script>
+<script src="js/dialog.js"></script>
+<title>保险销售人考试</title>
+<script>
+$(function(){
+	$("#dtk_but").click(function(){
+	//disable_scroll();
+	$("html,body").css("overflow","hidden");
+	$("html,body").css("height","100%");
+	$('html,body').animate({scrollTop: '0px'}, 100);
+	$("#mask").show();
+	$('#mask').on("touchmove",function(e){  
+			 e.stopPropagation();
+	});	
+	});
+	
+	$("#close").click(function(){
+	$("body").css("overflow","scroll");
+	$("#mask").hide();
+	});
+	
+	$("#exit").click(function(){
+	confirm_dialog("#confirm","温馨提示","是否确认退出本次考试？","取消","<a href=channel.html>确定</a>");	
+	});
+	
+	$("#reset").click(function(){
+	confirm_dialog("#confirm","温馨提示","是否确认重新开始考试？","取消","<a href=start.html>确定</a>");	
+	});
+
+})
+</script>
+
+</head>
+<body>
+<header class="header">
+	<a id="exit" class="break"></a>
+    <strong>考试结果</strong>
+    <a href="javascript:" class="jiaojuan" id="reset">重做</a>
+</header>   
+<div class="wrap">
+	<div class="end">
+    	<div class="quan"><span>78</span><small>分</small></div>
+        <div class="txt">
+        	<p>考试用时<span class="fc-green">28分49秒</span></p>
+			<p>排名第<span class="fc-orange">23</span>名</p>
+        </div>
+    </div>
+</div>
+
+<div class="end-fix">
+	<li>
+    	<a href="javascript:" id="dtk_but">
+    		<p class="icon"></p>
+    		<p>答题卡</p>
+        </a>
+    </li>
+    <li>
+    	<a href="startShow.html" id="dtk_but">
+    		<p class="icon1"></p>
+    		<p>查看试卷</p>
+        </a>
+    </li>
+    <li>
+    	<a href="sort.html">
+    		<p class="icon2"></p>
+    		<p>排行榜</p>
+        </a>
+    </li>
+</div>
+
+
+
+<div id="mask">
+	<div class="dtk">
+    	<div class="close" id="close"></div>
+    	<div class="wrap">
+        	<div class="title">答题卡</div>
+            <div class="list" id="list">
+            	<ul>
+                	<li class="green">
+                    	<div class="right"></div>
+                    	<a href="startShow.html">1</a>
+                    </li>
+                    <li class="green">
+                   		<div class="biaoji"></div>
+                    	<a href="startShow.html">2</a>
+                    </li>
+                    <li class="green">
+                    	<a href="startShow.html">3</a>
+                    </li>
+                    <li class="orange">
+                    	<div class="error"></div>
+                    	<a href="startShow.html">4</a>
+                    </li>
+                    <li class="grey">
+                    	<div class="biaoji-grey"></div>
+                    	<a href="#">5</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">6</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">7</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">8</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">9</a>
+                    </li>
+                    <li class="grey">
+                    	<a href="#">10</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">11</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">12</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">13</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">14</a>
+                    </li>
+                    <li class="grey">
+                    	<a href="#">15</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">16</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">17</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">18</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">19</a>
+                    </li>
+                    <li class="grey">
+                    	<a href="#">20</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">21</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">22</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">23</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">24</a>
+                    </li>
+                    <li class="grey">
+                    	<a href="#">25</a>
+                    </li><li class="green">
+                    	<a href="#">26</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">27</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">28</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">29</a>
+                    </li>
+                    <li class="grey">
+                    	<a href="#">30</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">31</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">32</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">33</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">34</a>
+                    </li>
+                    <li class="grey">
+                    	<a href="#">35</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">36</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">37</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">38</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">39</a>
+                    </li>
+                    <li class="grey">
+                    	<a href="#">40</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

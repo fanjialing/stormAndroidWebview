@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+    <head>
+   		 <meta charset="utf-8">
+        <meta http-equiv="Access-Control-Allow-Origin" content="*">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <title></title>
+        <link rel="stylesheet" href="css/jquery.mobile-1.1.1.min.css" />
+        <script src="js/JqueryMobile-mini/jquery-1.js"></script>
+        <script src="js/JqueryMobile-mini/jquery.mobile-1.1.1.min.js"></script>
+        <link type="text/css" href="load/load.css" rel="stylesheet" />
+         <link type="text/css" href="css/viewer.css" rel="stylesheet" />
+		<script src="load/load.js"></script>
+<script src="js/cornerstone/cornerstone.js"></script>
+<script src="js/cornerstone/jquery.hammer-full.js"></script>
+<script src="js/cornerstone/hammer.fakemultitouch.js"></script>
+<script src="js/cornerstone/cornerstoneMath.min.js"></script>
+<script src="js/cornerstone/dicomParser.min.js"></script>
+<script src="js/cornerstone/cornerstoneTools.js"></script>
+<script src="js/cornerstone/loadImage.js"></script> 
+<script src="config.js"></script> 
+<script src="c.js"></script>  
+        <style>
+            #ivbtnback{
+                border:2px solid;
+                border-radius:25px;
+                -moz-border-radius:25px; 
+            }
+            #popupclick1{
+                border:0px solid;
+                border-radius:25px;
+                -moz-border-radius:25px; 
+
+            }
+            
+            #scroller {  
+     position: absolute;  
+     z-index: 1;  
+     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);  
+     width: 100%;  
+     padding: 0;  
+}  
+        </style>
+    
+    </head>
+    <body>
+    <div id="load"></div>
+      <div data-role="page" id="viewerPage" style="background: black"
+               oncontextmenu="return false"
+         class='cornerstone-enabled-image imageContainor'
+         unselectable='on'
+         onselectstart='return false;'
+         onmousedown='return false;'
+      >
+<!-- 	<div data-role="page" id="viewerPage" data-url="demo-page" data-theme="a" style="background: black"  class='cornerstone-enabled-image imageContainor' >
+ -->
+            <div id="headerview"  style="z-index:40;" data-role="header" data-position="inline"  >
+                <!--                <a  class="button" data-icon="arrow-l" id="ivbtnback" >Back</a>
+                                <h3>iOviyam 2.0</h3>
+                                <a id="popupclick1"    href="#popupPanel" data-rel="popup"  data-position-to="window"  data-role="button" data-icon="gear" data-iconpos="left" >Tools</a>
+                -->
+                <a  href="#" data-rel="popup" class="button" data-icon="arrow-l" onclick="start()"   >返回</a>
+                                   <a  id="popupclick1"    href="#popupPanel" data-rel="popup"  data-position-to="window" data-role="button" data-icon="gear" data-mini="true">工具</a>
+                <h1 class="ui-title" >中迪</h1>
+          
+                
+            
+  <div  id="left-panel" data-role="popup" data-shadow="false"  data-tolerance="50,0" style="overflow:auto" >
+ <ul data-role="listview" data-inset="true"  id="uid" >
+</ul>
+</div>
+
+   
+     
+                <div id="popupPanel" data-role="popup" class="toolbarclr" data-shadow="false" data-tolerance="0,0" style="height: 173px; width: 180px;">
+                    <div id="lengthcalc" data-role="content" class="ui-block-a"  >
+                        <div data-role="content" class="ui-block-a">
+                            <div id="wwwc" data-role="content" class="Tbtnwindowlevels"   > </div>
+                            <div id="zoom" data-role="content" class="Tbtnzoomdrags"  > </div>
+                            <div id="invert" data-role="content"  class="Tbtninverts" > </div>
+                            <div id="pan" data-role="content" class="pans"  > </div>
+                        </div>
+                        <div data-role="content" class="ui-block-a"> 
+                        <div id="Tbtnfliphori" data-role="content" class="Tbtnfliphoris"> </div>
+                         <div id="Tbtnflipver" data-role="content" class="Tbtnflipvers"  > </div>
+                       <div id="Tbtnrotatel" data-role="content" class="Tbtnrotatels"  > </div>
+                        <div id="Tbtnrotater" data-role="content"  class="Tbtnrotaters" > </div>
+                        </div>
+                        <div class="ui-block-c">
+                            <div id="enableLength" data-role="content"  class="Tbtnlines" > </div>
+                            <div id="circleroi" data-role="content"  class="Tbtncircles" > </div>
+                            <div id="rectangleroi" data-role="content"  class="fanxing" > </div>
+                            <div id="angle" data-role="content"  class="jiao" > </div>
+                        
+                        </div> 
+                       <div class="ui-block-c">
+                       		<div id="show"  data-role="content" class="show" >  </div>
+                            <div id="probe" data-role="content"  class="dian"> </div>
+                            <div id="Reset" data-role="content"  class="Tbtnresets"> </div>
+                            <div id="close" data-role="content"  class="Tbtnclosegrey"> </div>
+                        </div> 
+                    </div>
+                </div>
+                <!--                popupPanelmm-->
+                <div id="popupPanelmm" data-role="popup"  data-shadow="false" data-tolerance="0,0"  class="toolbarclr">
+                    <div data-role="content"  class="toolbarclr">
+                        <div class="ui-grid-b">
+                            <div data-role="content" class="ui-block-a">
+                                <div id="btndefault" data-role="content" class="rbtndefault" > </div>
+                                <div id="btnabdomen" data-role="content" class="rbtnabdoman"> </div>
+                            </div>
+                            <div data-role="content" class="ui-block-b"> 
+                                <div id="btnlung" data-role="content"  class="rbtnlungs"> </div>
+                                <div id="btnbrain" data-role="content"  class="rbtnbrain"> </div>
+                            </div>
+                            <div data-role="content" class="ui-block-c">
+                                <div id="btnbone" data-role="content"  class="rbtnbone"> </div>
+                                <div id="btnheadneck" data-role="content" class="rbtnhandn"> </div>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="tmpimage"      style="display: none;"></div>
+            <div><label id="patNameoly"   class="cover" > </label></div>
+            <div><label id="sexoly"       class="cover" ></label></div>
+            <div><label id="modalityoly"  class="cover" ></label></div>
+            <div><label id="studydateoly" class="cover" ></label> </div>
+            <div><label id="studydesceoly" class="cover" ></label></div>
+            <div><label id="bodypartoly"  class="cover" ></label></div>
+            <div><label id="imageoly"     class="cover" ></label></div>
+            <div><label id="wlwcoly"      class="cover" ></label></div>
+            <div><label id="thicknewwoly" class="cover" ></label></div>
+            <div id="divtools"  style="position: absolute; z-index:40001;"></div>
+            <!--             <div id="arrowdiv" data-role="content" class="arrow"></div>-->
+            <div id="pixelspacingoly"  style="background-color: black;display: none;"></div>
+            <div><label id="resolution"     class="cover"></label></div>
+            <div><label id="seriesdesceoly" class="cover" ></label></div><!--
+            <canvas id="measure"  style="display: none;z-index:50;position: absolute;" ></canvas>
+            <div id="wrap" style="z-index:1; position:absolute;" >
+                <canvas id="imgcanvas" style="z-index:1;position:absolute;" width="578" height="400"  ></canvas>
+            </div>
+                 <div id="carousel" style=" position:absolute;"><ul id="listofuls"></ul></div>
+            <canvas id="overlayc"   style="position:absolute;z-index:0;"></canvas>
+            --><div id="footerview" style="z-index:50000; "  align="center"   data-position="fixed" >
+                <table width="90%" id="foottable" style="display:none">
+                    <tr>
+                        <td width="10%"  align="center" id="backbtns1"   >
+                            <a style="z-index:500;" data-iconpos="notext" data-theme="c" data-icon="arrow-l" id="backbtns" data-role="button" ></a>
+                        </td>
+                        <td width="90%" align="center" style="z-index:500;" >
+                            <div id="footerSlider">
+                                <input type="range"  style="width:100% !important" name="slider"  id="imgSlider" data-mini="true"/>
+                            </div>
+                        </td>
+                        <td width="10%"  align="center" style="padding-left:20px;" id="nxtbtn1" >
+                            <a  data-iconpos="notext" data-icon="arrow-r" id="nxtbtn" data-theme="c" data-role="button" ></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+     
+
+            <div   style="z-index:40;" data-role="footer" data-position="fixed"  >
+                &nbsp;<a  href="#left-panel" data-rel="popup" class="button" data-icon="arrow-l"    >序列</a>
+                <div class="ui-btn-right" data-role="controlgroup" data-type="horizontal"> 
+                    <!--                     <a href="#" data-role="button" data-icon="plus" data-iconpos="notext"></a>-->
+                </div>
+  </div>
+    </body>
+
+
+
+
+</html>

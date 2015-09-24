@@ -1,0 +1,308 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0 user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" type="text/css" href="css/base.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script src="js/jquery.1.7.2.min.js"></script>
+<script src="js/dialog.js"></script>
+<title>保险销售人考试</title>
+<script>
+var intDiff = parseInt(1800);//倒计时总秒数量
+function timer(intDiff){
+	window.setInterval(function(){
+	var day=0,
+		hour=0,
+		minute=0,
+		second=0;//时间默认值		
+	if(intDiff > 0){
+		day = Math.floor(intDiff / (60 * 60 * 24));
+		hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+		minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+		second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+	}
+	if (minute <= 9) minute = '0' + minute;
+	if (second <= 9) second = '0' + second;
+	$('#day_show').html(day+"天");
+	$('#hour_show').html('<s id="h"></s>'+hour+'时');
+	$('#minute_show').html('<s></s>'+minute+'分');
+	$('#second_show').html('<s></s>'+second+'秒');
+	intDiff--;
+	}, 1000);
+} 
+
+
+function kaoshi(){
+	
+}
+
+$(function(){
+	
+ timer(intDiff);
+function prevent_default(e) {
+	e.preventDefault();
+}
+
+function disable_scroll() {
+	$("body").on('touchmove', prevent_default);
+}
+	
+function ShowDiv(){
+	window.ontouchmove=function(e){
+		e.preventDefault && e.preventDefault();
+		e.returnValue=false;
+		e.stopPropagation && e.stopPropagation();
+		return false;
+  }           
+};
+function CloseDiv()
+{
+	window.ontouchmove=function(e){
+		e.preventDefault && e.preventDefault();
+		e.returnValue=true;
+		e.stopPropagation && e.stopPropagation();
+		return true;
+	}
+
+};
+   
+$("#dtk_but").click(function(){
+	disable_scroll();
+	$("html,body").css("overflow","hidden");
+	$("html,body").css("height","100%");
+	$("#mask").show();
+	$(".dtk").show();
+	$('#dtklist').on("touchmove",function(e){  
+		e.stopPropagation();
+	});	
+});
+$("#close").click(function(){
+	CloseDiv();
+	$("html,body").css("overflow","auto");
+	$("html,body").css("height","100%");
+	$("#mask").hide();
+	$(".dtk").hide();
+});
+
+$("#exit").click(function(){
+	confirm_dialog("#confirm","温馨提示","是否确认退出本次考试？","取消","<a href=channel.html>确定</a>");	
+});
+
+$(".jiaojuan").click(function(){
+	confirm_dialog("#confirm","温馨提示","您还有50道题目未完成！是否确认提交答题卡？","取消","<a href=end.html>确定</a>");	
+});
+	
+$("#bj").toggle(function(){
+	$(this).children("small").addClass("bj1");	
+	$(this).children("span.text").text("取消标记");
+},function(){
+	$(this).children("small").removeClass("bj1");
+	$(this).children("span.text").text("标记该题");
+});
+
+
+$(".start ul.item li").click(function(){
+	var index=$(".start ul.item li").index(this);
+	$(".start ul.item li").removeClass("right").eq(index).addClass("right");
+});
+	
+	
+});
+
+
+
+
+</script>
+</head>
+<body>
+<header class="header">
+	<a id="exit" class="break"></a>
+    <strong>金佑人生产品随堂测试</strong>
+    <a class="jiaojuan">交卷</a>
+</header>   
+<div class="wrap">
+	<div class="starttop">
+    	<div class="top">
+        	<span class="span1"><span id="num1">1</span>/<span id="total">10</span></span>
+            <span id="minute_show">0分</span>:<span id="second_show">0秒</span> 
+            <span class="span2" id="bj"><small class=""></small> <span class="text">标记该题</span> </span>
+        </div>
+    </div>
+
+   <div class="h10"></div>
+   
+   <div class="start">
+   	  <div id="step">
+    		<div class="f16"><span class="fc-green">判断题：</span>无效保险合同的处理方式依合同无效的影响程度不同，但一般情况下，采取的处理方式是（  ）</div>
+            <ul class="item">
+                <li>A.返还财产</li>
+                <li class="right">B.解除</li>
+                <li>C.终止</li>
+                <li>D.中止</li>
+            </ul>
+        </div>
+        
+<!--        <div id="step">
+    		<div class="f16"><span class="fc-green">判断题1：</span>无效保险合同的处理方式依合同无效的影响程度不同，但一般情况下，采取的处理方式是（  ）</div>
+            <ul class="item">
+                <li>A.返还财产</li>
+                <li class="right">B.解除</li>
+                <li>C.终止</li>
+                <li>D.中止</li>
+            </ul>
+        </div>-->
+
+    </div>
+</div>
+
+<div class="start-fix">
+	<li><a href="#" class="but disabled grey" id="prev">上一题</a></li>
+    <li><a href="javascript:" id="dtk_but" class="but green">答题卡</a></li>
+    <li><a href="javascript:" class="but enabled grey" id="next">下一题</a></li>
+</div>
+
+
+
+<div id="mask">
+	<div class="dtk">
+    	<div class="close" id="close"></div>
+    	<div class="wrap">
+        	<div class="title">答题卡</div>
+            <div class="list" id="list">
+            	<ul id="dtklist">
+                	<li class="green">
+                    	<div></div>
+                    	<a href="#">1</a>
+                    </li>
+                    <li class="green">
+                   		<div class="biaoji"></div>
+                    	<a href="#">2</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">3</a>
+                    </li>
+                    <li class="orange">
+                    	<div></div>
+                    	<a href="#">4</a>
+                    </li>
+                    <li class="grey">
+                    	<div class="biaoji-grey"></div>
+                    	<a href="#">5</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">6</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">7</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">8</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">9</a>
+                    </li>
+                    <li class="grey">
+                    	<a href="#">10</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">11</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">12</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">13</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">14</a>
+                    </li>
+                    <li class="grey">
+                    	<a href="#">15</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">16</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">17</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">18</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">19</a>
+                    </li>
+                    <li class="grey">
+                    	<a href="#">20</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">21</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">22</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">23</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">24</a>
+                    </li>
+                    <li class="grey">
+                    	<a href="#">25</a>
+                    </li><li class="green">
+                    	<a href="#">26</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">27</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">28</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">29</a>
+                    </li>
+                    <li class="grey">
+                    	<a href="#">30</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">31</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">32</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">33</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">34</a>
+                    </li>
+                    <li class="grey">
+                    	<a href="#">35</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">36</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">37</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">38</a>
+                    </li>
+                    <li class="green">
+                    	<a href="#">39</a>
+                    </li>
+                    <li class="grey">
+                    	<a href="#">40</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+
+</html>

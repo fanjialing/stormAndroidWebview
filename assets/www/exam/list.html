@@ -1,0 +1,229 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0 user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" type="text/css" href="css/base.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script src="js/jquery.1.7.2.min.js"></script>
+<script src="js/iscroll.js"></script>
+<title>保险销售人考试</title>
+<style>
+body{background:#f3f3f3;}
+.toptab{background:url(images/bg.jpg) 0 0 repeat;}
+.list_con ul{background:url(images/bg.jpg) 0 0 repeat;}
+</style>
+
+
+<script>
+$(function(){
+	$(".toptab ul li").each(function(n) {
+	
+		$(".toptab ul li").eq(n).toggle(function(){
+			if($(".toptab ul li").eq(0).attr("class")=="this"){
+				$(".toptab ul li").eq(0).trigger("click");
+			}else if($(".toptab ul li").eq(1).attr("class")=="this"){
+				$(".toptab ul li").eq(1).trigger("click");
+			}
+			$(".toptab ul li").removeClass("this").eq(n).addClass("this");
+			$(".toptab ul li").children("span.icon").removeClass("this").eq(n).addClass("this");
+			$(".toptab ul li").children("dl").css("display","none").eq(n).css("display","block");
+
+			$(".toptab ul li").eq(n).find("dl dd").each(function(index, element) {
+					var dom=$(".toptab ul li").eq(n).find("dl dd").eq(index);
+					dom.click(function(){
+						var value=dom.text();
+						var dom_child=$(".toptab ul li").eq(n).children("span#value");
+						dom_child.text(value);
+						$(".toptab ul li").eq(n).find("dl dd").removeClass("this").eq(index).addClass("this");
+				});
+			});
+
+		},function(){
+			$(".toptab ul li").eq(n).removeClass("this");
+			$(".toptab ul li").eq(n).children("span.icon").removeClass("this");	
+			$(".toptab ul li").eq(n).children("dl").hide();
+		});
+	
+		
+	});
+	
+	$("body").click(function(e){
+		//模拟点击触发一次
+		$(".toptab ul li").each(function(n) {
+			if($(".toptab ul li").eq(0).attr("class")=="this"){
+				$(".toptab ul li").eq(0).trigger("click");
+			}else if($(".toptab ul li").eq(1).attr("class")=="this"){
+				$(".toptab ul li").eq(1).trigger("click");
+			}
+		});
+		if(e.target.id.indexOf("toptab")==-1){
+		  $(".toptab ul li").removeClass("this");
+		  $(".toptab ul li").children("span.icon").removeClass("this");
+		  $(".toptab ul li").find("dl").hide();
+	  } 
+	});
+	
+		
+});
+
+var myScroll,
+	pullUpEl, pullUpOffset,
+	generatedCount = 0;
+
+function pullUpAction () {
+	setTimeout(function () {
+		var el, li, i;
+		el = document.getElementById('thelist');
+		for (i=0; i<6; i++) {
+			li = document.createElement('li');
+			li.innerHTML=' <a href="channel.html"> <p class="title substr">2014年保险销售人考试巅峰冲刺试卷（第一套）</p><p> <span class="icon1"></span><span>12988人</span>  <span class="icon2 ml10"></span><span>2015.07.02</span>  <span class="icon3 ml10"></span><span>进行中</span></p></a>';
+			el.appendChild(li, el.childNodes[0]);
+		}
+		myScroll.refresh();
+	}, 1000);
+}
+/**
+ * 初始化iScroll控件
+ */
+function loaded() {
+	pullDownEl = document.getElementById('pullDown');
+	pullDownOffset = pullDownEl.offsetHeight;
+	pullUpEl = document.getElementById('pullUp');	
+	pullUpOffset = pullUpEl.offsetHeight;
+	myScroll = new iScroll('wrapper', {
+		scrollbarClass: 'myScrollbar',
+		useTransition: true, 
+		topOffset: pullDownOffset,
+		onRefresh: function () {
+		if (pullUpEl.className.match('loading')) {
+				pullUpEl.className = '';
+				pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉加载更多...';
+			}
+		},
+		onScrollMove: function () {
+			if (this.y < (this.maxScrollY - 5) && !pullUpEl.className.match('flip')) {
+				pullUpEl.className = 'flip';
+				pullUpEl.querySelector('.pullUpLabel').innerHTML = '松手开始更新...';
+				this.maxScrollY = this.maxScrollY;
+			} else if (this.y > (this.maxScrollY + 5) && pullUpEl.className.match('flip')) {
+				pullUpEl.className = '';
+				pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉加载更多...';
+				this.maxScrollY = pullUpOffset;
+			}
+		},
+		onScrollEnd: function () {
+			if (pullUpEl.className.match('flip')) {
+				pullUpEl.className = 'loading';
+				pullUpEl.querySelector('.pullUpLabel').innerHTML = '努力加载中...';				
+				pullUpAction();
+			}
+		}
+	});
+	setTimeout(function () { document.getElementById('wrapper').style.left = '0'; }, 800);
+}
+//初始化绑定iScroll控件 
+document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+document.addEventListener('DOMContentLoaded', loaded, false);
+</script>
+
+
+</head>
+<body>
+<header class="header">
+	<a href="index.html" class="break"></a>
+    <strong>保险销售人考试</strong>
+</header>   
+<div class="wrap">
+	<div class="toptab">
+    	<ul> <div class="before"></div>
+        	<li>            
+            	<span id="value">全部分类</span><span class="icon"></span>
+                <dl>
+                    <dd class="this"><a href="#">全部分类</a></dd>
+                    <dd><a href="#">模拟试卷</a></dd>
+                    <dd><a href="#">历年真题</a></dd>
+                </dl>
+            </li>
+            <li>            
+            	<span id="value">推荐排序</span><span class="icon"></span>
+                <dl>
+                    <dd class="this"><a href="#">推荐排序</a></dd>
+                    <dd><a href="#">热门排序</a></dd>
+                    <dd><a href="#">时间排序</a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="h10"></div>
+    
+    <div id="wrapper">
+        <div class="list_con"  id="scroller">
+   			 <div id="pullDown"></div>
+            <ul id="thelist">
+                <li>
+                <a href="channel.html">
+                    <p class="title substr">2014年保险销售人考试巅峰冲刺试卷（第一套）</p>
+                    <p> <span class="icon1"></span><span>12988人</span>  <span class="icon2 ml10"></span><span>2015.07.02</span>  <span class="icon3 ml10"></span><span>进行中</span></p>
+                </a>
+                </li>
+                
+                <li>
+                <a href="channel.html">
+                    <p class="title substr">2014年保险销售人考试巅峰冲刺试卷（第一套）</p>
+                    <p> <span class="icon1"></span><span>12988人</span>  <span class="icon2 ml10"></span><span>2015.07.02</span>  <span class="icon3 ml10"></span><span>已结束</span></p>
+                </a>
+                </li>
+                
+               <li>
+                <a href="channel.html">
+                    <p class="title substr">2014年保险销售人考试巅峰冲刺试卷（第一套）</p>
+                    <p> <span class="icon1"></span><span>12988人</span>  <span class="icon2 ml10"></span><span>2015.07.02</span>  <span class="icon3 ml10"></span><span>已结束</span></p>
+                </a>
+                </li>
+                <li>
+                <a href="channel.html">
+                    <p class="title substr">2014年保险销售人考试巅峰冲刺试卷（第一套）</p>
+                    <p> <span class="icon1"></span><span>12988人</span>  <span class="icon2 ml10"></span><span>2015.07.02</span>  <span class="icon3 ml10"></span><span>进行中</span></p>
+                </a>
+                </li>
+                
+                <li>
+                <a href="channel.html">
+                    <p class="title substr">2014年保险销售人考试巅峰冲刺试卷（第一套）</p>
+                    <p> <span class="icon1"></span><span>12988人</span>  <span class="icon2 ml10"></span><span>2015.07.02</span>  <span class="icon3 ml10"></span><span>已结束</span></p>
+                </a>
+                </li>
+                
+               <li>
+                <a href="channel.html">
+                    <p class="title substr">2014年保险销售人考试巅峰冲刺试卷（第一套）</p>
+                    <p> <span class="icon1"></span><span>12988人</span>  <span class="icon2 ml10"></span><span>2015.07.02</span>  <span class="icon3 ml10"></span><span>已结束</span></p>
+                </a>
+                </li>
+                <li>
+                <a href="channel.html">
+                    <p class="title substr">2014年保险销售人考试巅峰冲刺试卷（第一套）</p>
+                    <p> <span class="icon1"></span><span>12988人</span>  <span class="icon2 ml10"></span><span>2015.07.02</span>  <span class="icon3 ml10"></span><span>已结束</span></p>
+                </a>
+                </li>
+                
+               <li>
+                <a href="channel.html">
+                    <p class="title substr">2014年保险销售人考试巅峰冲刺试卷（第一套）</p>
+                    <p> <span class="icon1"></span><span>12988人</span>  <span class="icon2 ml10"></span><span>2015.07.02</span>  <span class="icon3 ml10"></span><span>已结束</span></p>
+                </a>
+                </li>
+            </ul>
+            <div id="pullUp">
+                <span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

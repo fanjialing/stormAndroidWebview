@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+<!--
+	<item android:drawable="@drawable/home_selected" android:state_checked="true"/>
+    <item android:drawable="@drawable/home_normal" android:state_checked="false"/> 
+-->
+
+    
+<!--     <item android:drawable="@drawable/tab_weixin_pressed" android:state_checked="true"/>
+    <item android:drawable="@drawable/tab_weixin_normal" android:state_checked="false"/> -->
+    
+    <item android:drawable="@drawable/xiaoxi2" android:state_checked="true"/>
+    <item android:drawable="@drawable/xiaoxi1" android:state_checked="false"/>
+</selector>
