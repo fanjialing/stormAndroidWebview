@@ -80,7 +80,7 @@
             android:name="com.example.activty.ResultActivity"          
 			android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" />
-        	
+        
     </application>
 
 </manifest>
